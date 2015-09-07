@@ -1,0 +1,4 @@
+public/js/vendor
+node_modules
+bin
+public/data/

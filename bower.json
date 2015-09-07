@@ -1,0 +1,20 @@
+{
+  "name": "Gallery",
+  "version": "0.1",
+  "dependencies": {
+    "angular": "1.4.4",
+    "angular-sanitize": "1.4.4",
+    "angular-ui-bootstrap-bower": "0.13.3",
+    "angular-resource": "1.4.4",
+    "angular-route": "1.4.4",
+    "filer.js": "ebidel/filer.js#~0.4.3",
+    "blueimp-gallery": "blueimp/Gallery#~2.16.0"
+  },
+  "devDependencies": {
+    "angular-scenario": "1.2.28",
+    "angular-mocks": "1.4.4"
+  },
+  "resolutions": {
+    "angular": "1.4.4"
+  }
+}
