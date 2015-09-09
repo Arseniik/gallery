@@ -4,11 +4,11 @@
   "dependencies": {
     "angular": "1.4.4",
     "angular-sanitize": "1.4.4",
-    "angular-ui-bootstrap-bower": "0.13.3",
     "angular-resource": "1.4.4",
     "angular-route": "1.4.4",
     "filer.js": "ebidel/filer.js#~0.4.3",
-    "blueimp-gallery": "blueimp/Gallery#~2.16.0"
+    "blueimp-gallery": "blueimp/Gallery#~2.16.0",
+    "bootstrap": "3.0.3"
   },
   "devDependencies": {
     "angular-scenario": "1.2.28",

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name ="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            Gallery : Web App for videos and photos
+        </title>
+        <link rel="stylesheet" type="text/css" href="/css/style.css"></link>
+        <link rel="stylesheet" type="text/css" href="/css/blueimp-gallery.min.css"></link>
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"></link>
+    </head>
+    <body ng-app="gallery">
+        <div id="wrap">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="starter-template">
+                        <h1 style="color: white;" class="text-center">Gallery by Nikko</h1>
+                    </div>
+                </div>
+            </nav>
+            <div class="container">
+                <div class="starter-template">
+                    <div ng-controller="FilerController as vm">
+                        <div class="files-and-folders">
+                            <ul>
+                                <li ng-repeat="folder in vm.filesPerDepth | filter: vm.byFolder">
+                                    <div class="wrap" ng-click="vm.setVisibleFolder(folder);" ng-show="vm.show == folder.name || vm.show === false">
+                                        <img src="/images/folder.png" width="100px;" height="100px"></img>
+                                        <span>[[ folder.name ]] </span>
+                                    </div>
+                                    <div class="files-and-folders" ng-show="vm.show == folder.name">
+                                        <ul>
+                                            <li ng-repeat="child in folder.items | filter: vm.byFile" ng-click="vm.displayGallery($event)">
+                                                <div class="wrap">
+                                                    <img ng-src="/data/[[ folder.name ]]/[[ child.name ]]" width="100px;" height="100px"></img>
+                                                    <span>[[ child.name ]] </span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li ng-repeat="file in vm.filesPerDepth | filter: vm.byFile" ng-show="vm.show == file.name || vm.show == false" ng-click="vm.displayGallery($event, 'rootFolder')">
+                                    <div class="wrap">
+                                        <img ng-src="/data/[[ file.name ]]" width="100px;" height="100px"> </img>
+                                        <span>[[ file.name ]] </span>
+                                    </div>
+                                </li>
+                                <li ng-show="vm.show !== false" ng-click="vm.setVisibleFolder(undefined);">
+                                    <div class="wrap">
+                                        <img ng-src="/images/back.jpg" width="150px;" height="150px"> </img>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <div class="hidden" id="links">
+                                <a data-gallery ng-repeat="file in vm.currentFolderFiles" ng-href="[[ file.data.urls[0] ]]">
+                                    <img ng-src="[[ file.data.urls[0] ]]"></img>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="blueimp-gallery-carousel" class="blueimp-gallery blueimp-gallery-carousel pass-over" style="position: absolute;">
+                <div class="slides"></div>
+                <h3 class="title"></h3>
+                <a class="prev">‹</a>
+                <a class="next">›</a>
+                <a class="play-pause"></a>
+                <a class="close">x</a>
+                <ol class="indicator"></ol>
+            </div>
+        </div>
+        <footer id="footer" class="footer">
+            <div class="container">
+                <div class="starter-template">
+                    <p class="text-center">Powered by AngularJS & NodeJS</p>
+                </div>
+            </div>
+        </footer>
+        <!-- bower:js -->
+        <script src="/js/vendor/angular/angular.js"></script>
+        <script src="/js/vendor/angular-sanitize/angular-sanitize.js"></script>
+        <script src="/js/vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
+        <script src="/js/vendor/angular-resource/angular-resource.js"></script>
+        <script src="/js/vendor/angular-route/angular-route.js"></script>
+        <script src="/js/vendor/filer.js/src/filer.min.js"></script>
+        <!-- endbower -->
+
+        <script src="/js/main.js"></script>
+        <script src="/js/controllers/filerController.js"></script>
+        <script src="/js/factories/filerFactory.js"></script>
+        <script src="/js/filters/checkFolder.js"></script>
+        <script src="/js/blueimp/blueimp-gallery.min.js"></script>
+    </body>
+</html>
